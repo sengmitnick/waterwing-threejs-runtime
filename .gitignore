@@ -9,6 +9,7 @@ tmp/
 .env.*
 *.log
 *.mp4
+!public/media/waterfall-loop.mp4
 *.mov
 *.m4v
 *.wav

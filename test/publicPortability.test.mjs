@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
@@ -7,12 +7,16 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = relativePath => readFileSync(path.join(projectRoot, relativePath), 'utf8');
 
-test('the public preview does not require project-only waterfall footage', () => {
+test('the public preview ships a lightweight waterfall loop without private footage paths', () => {
   const html = read('waterwing-blender-forward.html');
   const preview = read('src/blender-forward/preview.js');
+  const bundledBackground = path.join(projectRoot, 'public/media/waterfall-loop.mp4');
 
-  assert.doesNotMatch(html, /waterfall-review\.mp4|\/media\//);
-  assert.doesNotMatch(preview, /waterfall-review\.mp4|\/media\//);
+  assert.match(html, /src="\.\/media\/waterfall-loop\.mp4"/);
+  assert.doesNotMatch(html, /waterfall-review\.mp4|(?:src|href)=["']\/media\//);
+  assert.doesNotMatch(preview, /waterfall-review\.mp4|["']\/media\//);
+  assert.equal(existsSync(bundledBackground), true);
+  assert.ok(statSync(bundledBackground).size < 1_500_000);
 });
 
 test('the public preview accepts an optional local background video', () => {

@@ -103,8 +103,9 @@ proceduralBackdropTexture.minFilter = THREE.LinearFilter;
 proceduralBackdropTexture.magFilter = THREE.LinearFilter;
 proceduralBackdropTexture.generateMipmaps = false;
 
-let activeWaterBackdropTexture = proceduralBackdropTexture;
+let activeWaterBackdropTexture = waterfallTexture;
 let backgroundVideoObjectUrl = null;
+let backgroundVideoSource = 'bundled-video';
 
 function updateProceduralWaterBackdrop(timeSeconds = 0) {
   const { width, height } = proceduralBackdropCanvas;
@@ -595,7 +596,20 @@ function updateWaterfallTextureCover() {
   waterfallTexture.updateMatrix();
 }
 
-waterfallVideo.addEventListener('loadedmetadata', updateWaterfallTextureCover);
+waterfallVideo.addEventListener('loadedmetadata', () => {
+  activeWaterBackdropTexture = waterfallTexture;
+  updateWaterfallTextureCover();
+  if (backgroundMode === 'waterfall') setBackgroundMode('waterfall');
+});
+waterfallVideo.addEventListener('error', () => {
+  activeWaterBackdropTexture = proceduralBackdropTexture;
+  backgroundVideoSource = 'procedural-water';
+  if (backgroundVideoObjectUrl) {
+    URL.revokeObjectURL(backgroundVideoObjectUrl);
+    backgroundVideoObjectUrl = null;
+  }
+  if (backgroundMode === 'waterfall') setBackgroundMode('waterfall');
+});
 
 async function setLocalBackgroundVideo(file) {
   if (!(file instanceof File) || !file.type.startsWith('video/')) {
@@ -610,6 +624,7 @@ async function setLocalBackgroundVideo(file) {
     waterfallVideo.addEventListener('error', () => reject(new Error('本地背景视频无法读取')), { once: true });
   });
   activeWaterBackdropTexture = waterfallTexture;
+  backgroundVideoSource = 'local-video';
   updateWaterfallTextureCover();
   setBackgroundMode('waterfall');
   await waterfallVideo.play().catch(() => {});
@@ -889,8 +904,8 @@ function setBackgroundMode(mode) {
   scene.fog = isWaterfall ? null : studioFog;
   for (const decoration of studioDecorations) decoration.visible = !isWaterfall;
   // The moving backdrop is rendered inside WebGL so physical transmission can
-  // sample it. The public demo uses a generated water field until the viewer
-  // chooses a local video; that local file never leaves the browser.
+  // sample it. A lightweight bundled loop is the default; local replacements
+  // stay inside the viewer's browser.
   waterfallVideo.classList.add('hidden');
   if (isWaterfall && activeWaterBackdropTexture === waterfallTexture) {
     updateWaterfallTextureCover();
@@ -1053,10 +1068,10 @@ function getState() {
     lightingProfile: { ...lightingProfile },
     backgroundMode,
     debugLayers: [...debugLayers],
-    backgroundSource: backgroundVideoObjectUrl ? 'local-video' : 'procedural-water',
+    backgroundSource: backgroundVideoSource,
     cameraTarget: controls.target.toArray(),
     backgroundRendering: backgroundMode === 'waterfall'
-      ? (backgroundVideoObjectUrl ? 'webgl-video-texture' : 'webgl-canvas-texture')
+      ? (activeWaterBackdropTexture === waterfallTexture ? 'webgl-video-texture' : 'webgl-canvas-texture')
       : 'webgl-solid-color',
     domBackdropVisible: !waterfallVideo.classList.contains('hidden'),
     anchorCount: asset.manifest.anchors.length,

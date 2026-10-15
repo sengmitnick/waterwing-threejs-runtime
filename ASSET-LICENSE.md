@@ -4,7 +4,7 @@ Copyright (c) 2026 张润胜. All rights reserved.
 
 This license applies to the original Waterwing character models, animations,
 materials, textures, manifests, and other visual assets stored under
-`assets/blender/`.
+`assets/blender/`, plus the bundled demo footage under `public/media/`.
 
 You may download and run these assets only as part of this repository's demo
 and evaluation workflow. No permission is granted to redistribute, extract,

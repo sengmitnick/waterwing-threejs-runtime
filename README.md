@@ -8,7 +8,7 @@ GitHub Pages 部署完成后可直接打开仓库首页右侧的 `Deployments`�
 
 `https://sengmitnick.github.io/waterwing-threejs-runtime/`
 
-公开版默认使用程序生成的流动水景，不包含原项目的瀑布视频。你可以在左侧选择任意本地视频作为背景；视频只在当前浏览器读取，不会上传。
+公开版内置一段约 4 秒、约 400 KB 的无声瀑布循环作为默认背景，载入失败时自动回退到程序生成的流动水景。你也可以在左侧选择任意本地视频作为背景；本地视频只在当前浏览器读取，不会上传。
 
 ## 已收录内容
 
@@ -51,6 +51,7 @@ CHROME_PATH=/path/to/chrome npm test
 
 ```text
 assets/blender/       浏览器使用的 GLB 与动作清单
+public/media/         轻量瀑布循环背景
 blender/              Blender 构建与资产校验脚本
 src/blender-forward/  模型载入、材质和统一审阅页面
 src/projectiles/      玩家与怪物水球
@@ -62,7 +63,7 @@ test/                 静态、资产与真实浏览器测试
 ## 授权
 
 - 源代码采用 [MIT License](./LICENSE)。
-- `assets/blender/` 下的“瀑翼水灵”模型与视觉资产采用单独的 [资产许可](./ASSET-LICENSE.md)，目前仅允许查看和运行本仓库演示，不自动授予再分发、商用或衍生模型权利。
+- `assets/blender/` 下的“瀑翼水灵”模型、视觉资产以及 `public/media/` 下的演示背景采用单独的 [资产许可](./ASSET-LICENSE.md)，目前仅允许查看和运行本仓库演示，不自动授予再分发、商用或衍生资产权利。
 - Three.js、Vite 等第三方依赖遵循各自许可证。
 
 如果后续要把模型资产也开放为可复用授权，可单独调整 `ASSET-LICENSE.md`，不影响 MIT 代码许可。
