@@ -55,7 +55,22 @@ test.before(async () => {
   page.on('requestfailed', request => errors.push(`${request.method()} ${request.url()}`));
   await page.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
   await page.goto(new URL('waterwing-blender-forward.html', baseUrl).href, { waitUntil: 'domcontentloaded', timeout: 12000 });
-  await page.waitForFunction(() => window.waterwingBlenderPreview?.ready === true, { timeout: 30000 });
+  try {
+    await page.waitForFunction(() => window.waterwingBlenderPreview?.ready === true, { timeout: 30000 });
+  } catch (error) {
+    const diagnostics = await page.evaluate(() => {
+      const canvas = document.createElement('canvas');
+      return {
+        preview: window.waterwingBlenderPreview ?? null,
+        status: document.querySelector('#status')?.textContent ?? null,
+        userAgent: navigator.userAgent,
+        webgl2: Boolean(canvas.getContext('webgl2')),
+        webgl: Boolean(canvas.getContext('webgl')),
+      };
+    });
+    console.error('Waterwing browser startup diagnostics', JSON.stringify({ errors, diagnostics }, null, 2));
+    throw error;
+  }
 });
 
 test.after(async () => {
