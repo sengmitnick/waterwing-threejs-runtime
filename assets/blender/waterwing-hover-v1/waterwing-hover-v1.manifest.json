@@ -1,0 +1,181 @@
+{
+  "assetVersion": "waterwing-hover-v1",
+  "action": "hover",
+  "clip": "WW_hover_loop_v1",
+  "fps": 30,
+  "frameRange": [
+    1,
+    181
+  ],
+  "durationSeconds": 6.0,
+  "rootMotion": false,
+  "coordinateConvention": {
+    "blender": "right-handed Z-up, creature forward -Y",
+    "three": "right-handed Y-up, creature forward +Z",
+    "mapping": "(x, y, z) -> (x, z, -y)"
+  },
+  "bounds": {
+    "blender": {
+      "min": [
+        -4.114996910095215,
+        -3.012610912322998,
+        -0.8079697489738464
+      ],
+      "max": [
+        4.114996910095215,
+        4.2270002365112305,
+        0.9575885534286499
+      ]
+    },
+    "three": {
+      "min": [
+        -4.114997,
+        -0.80797,
+        3.012611
+      ],
+      "max": [
+        4.114997,
+        0.957589,
+        -4.227
+      ]
+    }
+  },
+  "mesh": {
+    "vertices": 13458,
+    "polygons": 13824,
+    "topology": "closed-rounded-multi-ring-manta-loft-v2",
+    "frontPoleValence": 16,
+    "noseRingSegments": [
+      16,
+      32,
+      64,
+      128,
+      128,
+      128
+    ]
+  },
+  "bones": [
+    "root",
+    "body_front",
+    "body_mid",
+    "wing_L_root",
+    "wing_L_mid",
+    "wing_L_tip",
+    "wing_L_web",
+    "wing_R_root",
+    "wing_R_mid",
+    "wing_R_tip",
+    "wing_R_web",
+    "body_rear",
+    "tail_01",
+    "tail_02",
+    "tail_03"
+  ],
+  "morphs": [
+    "Hover_Lift",
+    "Hover_Sink",
+    "Wing_Ripple_L",
+    "Wing_Ripple_R",
+    "Body_Breathe",
+    "Tail_Sway_L",
+    "Tail_Sway_R",
+    "Surface_Wobble"
+  ],
+  "animations": [
+    "WW_hover_loop_v1"
+  ],
+  "anchors": [
+    {
+      "name": "health-anchor",
+      "blender": [
+        0.0,
+        -0.35,
+        1.42
+      ],
+      "three": [
+        0.0,
+        1.42,
+        0.35
+      ]
+    },
+    {
+      "name": "muzzle-anchor",
+      "blender": [
+        0.0,
+        -3.045,
+        0.03
+      ],
+      "three": [
+        0.0,
+        0.03,
+        3.045
+      ]
+    },
+    {
+      "name": "impact-anchor",
+      "blender": [
+        0.0,
+        -0.88,
+        0.24
+      ],
+      "three": [
+        0.0,
+        0.24,
+        0.88
+      ]
+    },
+    {
+      "name": "waterline-anchor",
+      "blender": [
+        0.0,
+        0.05,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        -0.05
+      ]
+    },
+    {
+      "name": "wingtip-left",
+      "blender": [
+        3.98,
+        -0.28,
+        0.5
+      ],
+      "three": [
+        3.98,
+        0.5,
+        0.28
+      ]
+    },
+    {
+      "name": "wingtip-right",
+      "blender": [
+        -3.98,
+        -0.28,
+        0.5
+      ],
+      "three": [
+        -3.98,
+        0.5,
+        0.28
+      ]
+    },
+    {
+      "name": "tailtip-anchor",
+      "blender": [
+        0.0,
+        4.17,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        -4.17
+      ]
+    }
+  ],
+  "sha256": "eb2e25e4705fddb778055454ae381f5613bb6f45bf45934780629b43e516a96e"
+}

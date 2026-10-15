@@ -1,0 +1,365 @@
+{
+  "assetVersion": "waterwing-direct-cast-v2",
+  "action": "enemy-direct-cast",
+  "clip": "WW_direct_cast_v2",
+  "fps": 30,
+  "frameRange": [
+    1,
+    133
+  ],
+  "durationSeconds": 4.4,
+  "loop": false,
+  "rootMotion": false,
+  "coordinateConvention": {
+    "blender": "right-handed Z-up, creature forward -Y",
+    "three": "right-handed Y-up, creature forward +Z",
+    "mapping": "(x, y, z) -> (x, z, -y)"
+  },
+  "bounds": {
+    "blender": {
+      "min": [
+        -4.132393836975098,
+        -3.1549999713897705,
+        -0.9641823768615723
+      ],
+      "max": [
+        4.132393836975098,
+        4.236999988555908,
+        1.1141606569290161
+      ]
+    },
+    "three": {
+      "min": [
+        -4.132394,
+        -0.964182,
+        3.155
+      ],
+      "max": [
+        4.132394,
+        1.114161,
+        -4.237
+      ]
+    }
+  },
+  "mesh": {
+    "vertices": 12786,
+    "polygons": 13024
+  },
+  "bones": [
+    "root",
+    "body_front",
+    "body_mid",
+    "wing_L_root",
+    "wing_L_mid",
+    "wing_L_tip",
+    "wing_L_web",
+    "wing_R_root",
+    "wing_R_mid",
+    "wing_R_tip",
+    "wing_R_web",
+    "body_rear",
+    "tail_01",
+    "tail_02",
+    "tail_03"
+  ],
+  "morphs": [
+    "Cast_Gather",
+    "Cast_AimLift",
+    "Cast_FullBodyRecoil",
+    "Cast_WingWave_L",
+    "Cast_WingWave_R",
+    "Cast_TailLag",
+    "Cast_ChestVolume_Corrective"
+  ],
+  "animations": [
+    "WW_direct_cast_v2"
+  ],
+  "anchors": [
+    {
+      "name": "health-anchor",
+      "blender": [
+        0.0,
+        -0.35,
+        1.42
+      ],
+      "three": [
+        0.0,
+        1.42,
+        0.35
+      ]
+    },
+    {
+      "name": "muzzle-anchor",
+      "blender": [
+        0.0,
+        -3.18,
+        0.03
+      ],
+      "three": [
+        0.0,
+        0.03,
+        3.18
+      ]
+    },
+    {
+      "name": "impact-anchor",
+      "blender": [
+        0.0,
+        -1.0,
+        0.24
+      ],
+      "three": [
+        0.0,
+        0.24,
+        1.0
+      ]
+    },
+    {
+      "name": "waterline-anchor",
+      "blender": [
+        0.0,
+        0.05,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        -0.05
+      ]
+    },
+    {
+      "name": "wingtip-left",
+      "blender": [
+        3.98,
+        -0.28,
+        0.5
+      ],
+      "three": [
+        3.98,
+        0.5,
+        0.28
+      ]
+    },
+    {
+      "name": "wingtip-right",
+      "blender": [
+        -3.98,
+        -0.28,
+        0.5
+      ],
+      "three": [
+        -3.98,
+        0.5,
+        0.28
+      ]
+    },
+    {
+      "name": "tailtip-anchor",
+      "blender": [
+        0.0,
+        4.17,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        -4.17
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "name": "neutral",
+      "frame": 1,
+      "seconds": 0.0
+    },
+    {
+      "name": "gather",
+      "frame": 21,
+      "seconds": 0.666667
+    },
+    {
+      "name": "charge",
+      "frame": 43,
+      "seconds": 1.4
+    },
+    {
+      "name": "aim",
+      "frame": 61,
+      "seconds": 2.0
+    },
+    {
+      "name": "release",
+      "frame": 73,
+      "seconds": 2.4
+    },
+    {
+      "name": "recoil",
+      "frame": 83,
+      "seconds": 2.733333
+    },
+    {
+      "name": "tail-lag",
+      "frame": 97,
+      "seconds": 3.2
+    },
+    {
+      "name": "recover",
+      "frame": 117,
+      "seconds": 3.866667
+    }
+  ],
+  "muzzleTrajectory": [
+    {
+      "phase": "neutral",
+      "frame": 1,
+      "blender": [
+        0.0,
+        -3.18,
+        0.03
+      ],
+      "three": [
+        0.0,
+        0.03,
+        3.18
+      ]
+    },
+    {
+      "phase": "gather",
+      "frame": 21,
+      "blender": [
+        0.0,
+        -3.180126,
+        0.01182
+      ],
+      "three": [
+        0.0,
+        0.01182,
+        3.180126
+      ]
+    },
+    {
+      "phase": "charge",
+      "frame": 43,
+      "blender": [
+        0.0,
+        -3.180142,
+        -0.006361
+      ],
+      "three": [
+        0.0,
+        -0.006361,
+        3.180142
+      ]
+    },
+    {
+      "phase": "aim",
+      "frame": 61,
+      "blender": [
+        0.0,
+        -3.180049,
+        -0.024542
+      ],
+      "three": [
+        0.0,
+        -0.024542,
+        3.180049
+      ]
+    },
+    {
+      "phase": "release",
+      "frame": 73,
+      "blender": [
+        0.0,
+        -3.179663,
+        0.054239
+      ],
+      "three": [
+        0.0,
+        0.054239,
+        3.179663
+      ]
+    },
+    {
+      "phase": "recoil",
+      "frame": 83,
+      "blender": [
+        0.0,
+        -3.177737,
+        0.120873
+      ],
+      "three": [
+        0.0,
+        0.120873,
+        3.177737
+      ]
+    },
+    {
+      "phase": "tail-lag",
+      "frame": 97,
+      "blender": [
+        0.0,
+        -3.179422,
+        0.066357
+      ],
+      "three": [
+        0.0,
+        0.066357,
+        3.179422
+      ]
+    },
+    {
+      "phase": "recover",
+      "frame": 117,
+      "blender": [
+        0.0,
+        -3.179856,
+        0.04212
+      ],
+      "three": [
+        0.0,
+        0.04212,
+        3.179856
+      ]
+    },
+    {
+      "phase": "settled",
+      "frame": 133,
+      "blender": [
+        0.0,
+        -3.18,
+        0.03
+      ],
+      "three": [
+        0.0,
+        0.03,
+        3.18
+      ]
+    }
+  ],
+  "chargeNodes": [
+    "MuzzleCharge",
+    "MuzzleDroplet_L",
+    "MuzzleDroplet_R"
+  ],
+  "events": [
+    {
+      "name": "projectile-release",
+      "frame": 73,
+      "seconds": 2.4,
+      "anchor": "muzzle-anchor",
+      "projectileAsset": "enemy-direct-waterball-v2.glb"
+    }
+  ],
+  "motionDesign": {
+    "driver": "shape-keys-with-small-bone-lag",
+    "chestVolumePreserved": true,
+    "weaponSilhouette": false,
+    "boneRotationLimitRadians": 0.075,
+    "dominantMorphThreshold": 0.25,
+    "maxDominantMorphs": 3
+  },
+  "projectileAsset": "enemy-direct-waterball-v2.glb",
+  "releaseFrame": 73,
+  "sha256": "64fd492af6171c8db148a40b2fedfe2dfc01518670d1e018a82e23d0256593db"
+}

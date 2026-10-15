@@ -1,0 +1,17 @@
+{
+  "name": "waterwing-threejs-runtime",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "three": "0.183.2"
+  },
+  "devDependencies": {
+    "puppeteer-core": "latest",
+    "vite": "latest"
+  }
+}

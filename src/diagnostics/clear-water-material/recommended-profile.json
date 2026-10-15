@@ -1,0 +1,54 @@
+{
+  "version": "waterwing-clear-water-diagnostic-d",
+  "renderPolicy": {
+    "opacity": 1,
+    "transparent": false,
+    "depthWrite": true,
+    "side": "FrontSide",
+    "reason": "Water clarity is physical transmission, not alpha blending; the tail therefore does not blend through the torso."
+  },
+  "shared": {
+    "baseColor": "#edfafa",
+    "roughness": 0.06,
+    "ior": 1.333,
+    "clearcoat": 0.08,
+    "clearcoatRoughness": 0.065,
+    "specularIntensity": 0.92,
+    "specularColor": "#f7ffff",
+    "envMapIntensity": 0.88,
+    "normalScale": 0.022,
+    "normalPattern": "periodic-fbm-no-directional-bands"
+  },
+  "skinWeightRegions": {
+    "body": {
+      "transmission": 0.98,
+      "thickness": 0.52,
+      "attenuationColor": "#4f9faa",
+      "attenuationDistance": 0.82
+    },
+    "wing": {
+      "transmission": 1,
+      "thickness": 0.22,
+      "attenuationColor": "#76b8c0",
+      "attenuationDistance": 1.02
+    },
+    "tail": {
+      "transmission": 0.99,
+      "thickness": 0.34,
+      "attenuationColor": "#68b0ba",
+      "attenuationDistance": 0.95
+    }
+  },
+  "rim": {
+    "tint": "#eafcff",
+    "strength": 0.14,
+    "power": 3.35,
+    "implementation": "single-pass Fresnel contribution; no transparent duplicate shell"
+  },
+  "core": {
+    "carrierOpacity": 0,
+    "glowOpacity": 0.29,
+    "glowScale": 0.34,
+    "blend": "AdditiveBlending"
+  }
+}

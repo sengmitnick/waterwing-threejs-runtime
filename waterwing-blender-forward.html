@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>瀑翼水灵 · Blender 动作模型审阅</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #030a10;
+        color: #d9f8ff;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 1080px; min-height: 720px; overflow: hidden; background: #030a10; }
+      button, input { font: inherit; }
+      .shell { display: grid; grid-template-columns: 284px minmax(0, 1fr); height: 100vh; min-height: 0; }
+      .panel {
+        position: relative;
+        z-index: 3;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding: 28px 22px 22px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-gutter: stable;
+        border-right: 1px solid rgba(84, 221, 240, .16);
+        background: linear-gradient(180deg, rgba(8, 25, 36, .98), rgba(3, 12, 19, .98));
+        box-shadow: 18px 0 48px rgba(0, 0, 0, .25);
+      }
+      .panel::-webkit-scrollbar { width: 7px; }
+      .panel::-webkit-scrollbar-track { background: rgba(4, 18, 26, .5); }
+      .panel::-webkit-scrollbar-thumb { border-radius: 99px; background: rgba(86, 221, 236, .28); }
+      .eyebrow { margin: 0 0 8px; color: #56ddec; font: 600 11px/1.2 ui-monospace, monospace; letter-spacing: .16em; }
+      h1 { margin: 0; color: #effcff; font-size: 25px; font-weight: 620; letter-spacing: -.03em; }
+      .subtitle { margin: 9px 0 0; color: #7ca6b2; font-size: 12px; line-height: 1.6; }
+      .build-badge {
+        display: inline-flex;
+        margin-top: 12px;
+        padding: 6px 8px;
+        border: 1px solid rgba(99, 235, 244, .26);
+        border-radius: 6px;
+        color: #bdeff4;
+        background: rgba(34, 145, 156, .12);
+        font: 650 9px/1 ui-monospace, monospace;
+        letter-spacing: .07em;
+      }
+      .group { display: grid; gap: 9px; }
+      .group-title { color: #648b96; font: 600 10px/1.2 ui-monospace, monospace; letter-spacing: .14em; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+      .grid.views { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid.transport { grid-template-columns: 1fr 1.35fr 1fr; }
+      .mode-grid { grid-template-columns: 1fr 1.25fr; }
+      .group[hidden] { display: none; }
+      button {
+        min-height: 34px;
+        padding: 7px 9px;
+        border: 1px solid rgba(110, 207, 221, .16);
+        border-radius: 7px;
+        color: #93b9c2;
+        background: rgba(31, 73, 84, .16);
+        cursor: pointer;
+        transition: border-color .18s, color .18s, background .18s;
+      }
+      button:hover { border-color: rgba(76, 231, 247, .48); color: #ddfbff; }
+      button.active { border-color: rgba(66, 230, 244, .72); color: #e9fdff; background: rgba(30, 174, 190, .18); }
+      .phase-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; }
+      input[type="range"] { width: 100%; accent-color: #33d5e5; }
+      #phase-label { min-width: 78px; color: #a8d8e1; font: 500 10px/1.2 ui-monospace, monospace; text-align: right; }
+      .status {
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid rgba(91, 205, 221, .13);
+        color: #688891;
+        font: 600 9px/1.5 ui-monospace, monospace;
+        letter-spacing: .12em;
+      }
+      .status.ready { color: #62ebce; }
+      .status.error { color: #ff8f90; }
+      .background-picker {
+        display: flex;
+        min-height: 34px;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 10px;
+        border: 1px solid rgba(110, 207, 221, .2);
+        border-radius: 7px;
+        color: #a9e6ed;
+        background: rgba(31, 73, 84, .16);
+        font-size: 11px;
+        cursor: pointer;
+      }
+      .background-picker:hover { border-color: rgba(76, 231, 247, .48); color: #effeff; }
+      .background-picker input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+      .viewport {
+        position: relative;
+        min-width: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 52% 18%, rgba(116, 213, 225, .34), transparent 34%),
+          linear-gradient(160deg, #163745, #071923 64%, #030a10);
+      }
+      .waterfall-backdrop {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        opacity: 1;
+        transition: opacity .18s ease;
+      }
+      .waterfall-backdrop.hidden { opacity: 0; }
+      #stage { position: absolute; z-index: 1; inset: 0; }
+      #stage canvas { display: block; width: 100%; height: 100%; }
+      .topline {
+        position: absolute;
+        z-index: 2;
+        top: 22px;
+        left: 26px;
+        right: 26px;
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+      }
+      .chip {
+        padding: 7px 10px;
+        border: 1px solid rgba(91, 221, 235, .18);
+        border-radius: 999px;
+        color: rgba(195, 242, 249, .72);
+        background: rgba(3, 14, 21, .54);
+        backdrop-filter: blur(12px);
+        font: 600 9px/1 ui-monospace, monospace;
+        letter-spacing: .12em;
+      }
+      .hint {
+        position: absolute;
+        z-index: 2;
+        right: 24px;
+        bottom: 20px;
+        color: rgba(148, 198, 208, .54);
+        font-size: 11px;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="panel">
+        <header>
+          <p id="asset-eyebrow" class="eyebrow">WATERWING / CLEAR WATER V10</p>
+          <h1 id="action-title">最终战斗动作审阅</h1>
+          <p id="review-subtitle" class="subtitle">5 个 Blender 专用母动作派生 11 个成片战斗状态；统一使用当前确认的浅青晶透水体与弱水核。</p>
+          <div id="material-profile-badge" class="build-badge">浅青晶透水体 V10 · 弱水核</div>
+        </header>
+
+        <section class="group">
+          <div class="group-title">MODE / 验收模式</div>
+          <div class="grid mode-grid">
+            <button data-review-mode="actors" class="active">角色动作</button>
+            <button data-review-mode="effects">特效资产验收</button>
+          </div>
+        </section>
+
+        <section class="group">
+          <div id="library-title" class="group-title">ACTION / 专用动作</div>
+          <div id="action-grid" class="grid"></div>
+        </section>
+
+        <section class="group">
+          <div class="group-title">CAMERA / 视角</div>
+          <div class="grid views">
+            <button data-view="propulsion" class="active">推进</button>
+            <button data-view="front">正面</button>
+            <button data-view="rear">背面</button>
+            <button data-view="left">左侧</button>
+            <button data-view="right">右侧</button>
+            <button data-view="top">俯视</button>
+          </div>
+        </section>
+
+        <section id="debug-section" class="group" hidden>
+          <div class="group-title">DEBUG / 资产结构</div>
+          <div id="debug-grid" class="grid">
+            <button data-debug="trajectory">飞行轨迹</button>
+            <button data-debug="anchors">发射与命中点</button>
+            <button data-debug="waterline">水面锚点</button>
+          </div>
+        </section>
+
+        <section id="instances-section" class="group">
+          <div class="group-title">TIMELINE / 动作相位</div>
+          <div class="phase-row">
+            <input id="phase" type="range" min="0" max="1" step="0.001" value="0" />
+            <span id="phase-label">0% · 0.00s</span>
+          </div>
+          <div class="grid transport">
+            <button data-frame-step="-1">−1 帧</button>
+            <button id="play-toggle" class="active">暂停</button>
+            <button data-frame-step="1">+1 帧</button>
+          </div>
+          <div class="grid views">
+            <button data-speed="0.25">0.25×</button>
+            <button data-speed="0.5">0.5×</button>
+            <button data-speed="1" class="active">1×</button>
+          </div>
+        </section>
+
+        <section class="group">
+          <div class="group-title">REVIEW / 审阅</div>
+          <div class="grid">
+            <button data-material="water" class="active">水体材质</button>
+            <button data-material="clay">素模检查</button>
+            <button id="skeleton-toggle">显示骨架</button>
+            <button id="anchors-toggle">显示锚点</button>
+            <button data-background="waterfall" class="active">流动水景</button>
+            <button data-background="studio">暗底审阅</button>
+          </div>
+          <label class="background-picker" for="background-video-input">
+            选择本地背景视频
+            <input id="background-video-input" type="file" accept="video/*" />
+          </label>
+        </section>
+
+        <section class="group">
+          <div class="group-title">INSTANCES / 实例</div>
+          <div class="grid">
+            <button data-clones="1" class="active">单只</button>
+            <button data-clones="2">两只</button>
+            <button data-clones="3">三只</button>
+          </div>
+        </section>
+
+        <div id="status" class="status">LOADING RIGGED GLB…</div>
+      </aside>
+
+      <section class="viewport">
+        <video
+          id="waterfall-background"
+          class="waterfall-backdrop"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        ></video>
+        <div id="stage"></div>
+        <div class="topline">
+          <span id="mode-chip" class="chip">5 AUTHORED CLIPS · 11 COMBAT STATES</span>
+          <span id="water-profile-chip" class="chip">CLEAR WATER V10 · WEAK CORE</span>
+        </div>
+        <div class="hint">拖动旋转 · 滚轮缩放 · 右键平移</div>
+      </section>
+    </main>
+    <script type="module" src="./src/blender-forward/preview.js"></script>
+  </body>
+</html>

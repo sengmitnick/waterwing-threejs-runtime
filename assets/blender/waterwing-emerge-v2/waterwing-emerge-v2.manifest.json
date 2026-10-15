@@ -1,0 +1,216 @@
+{
+  "assetVersion": "waterwing-emerge-v2",
+  "action": "emerge",
+  "clip": "WW_emerge_once_v2",
+  "fps": 30,
+  "frameRange": [
+    1,
+    151
+  ],
+  "durationSeconds": 5.0,
+  "loop": false,
+  "rootMotion": false,
+  "formationLogic": "underwater-condensation-asymmetric",
+  "phaseFrames": {
+    "amorphous": 1,
+    "wingRoots": 40,
+    "bodyLift": 82,
+    "tailRelease": 113,
+    "hover": 151
+  },
+  "coordinateConvention": {
+    "blender": "right-handed Z-up, creature forward -Y",
+    "three": "right-handed Y-up, creature forward +Z",
+    "mapping": "(x, y, z) -> (x, z, -y)"
+  },
+  "boundsAtFinalPose": {
+    "blender": {
+      "min": [
+        -4.149265766143799,
+        -3.0143978595733643,
+        -0.7609291076660156
+      ],
+      "max": [
+        4.150033473968506,
+        4.215117931365967,
+        1.0007519721984863
+      ]
+    },
+    "three": {
+      "min": [
+        -4.149266,
+        -0.760929,
+        3.014398
+      ],
+      "max": [
+        4.150033,
+        1.000752,
+        -4.215118
+      ]
+    }
+  },
+  "mesh": {
+    "vertices": 13458,
+    "polygons": 13824,
+    "topology": "closed-rounded-multi-ring-manta-loft-v2",
+    "frontPoleValence": 16,
+    "noseRingSegments": [
+      16,
+      32,
+      64,
+      128,
+      128,
+      128
+    ]
+  },
+  "bones": [
+    "root",
+    "body_front",
+    "body_mid",
+    "wing_L_root",
+    "wing_L_mid",
+    "wing_L_tip",
+    "wing_L_web",
+    "wing_R_root",
+    "wing_R_mid",
+    "wing_R_tip",
+    "wing_R_web",
+    "body_rear",
+    "tail_01",
+    "tail_02",
+    "tail_03"
+  ],
+  "morphs": [
+    "Emerge_Amorphous",
+    "Emerge_WingRoots",
+    "Emerge_WingDraw_L",
+    "Emerge_WingDraw_R",
+    "Emerge_BodyLift",
+    "Emerge_TailRelease",
+    "Emerge_Unfurl",
+    "Emerge_HoverSettle"
+  ],
+  "animations": [
+    "WW_emerge_once_v2"
+  ],
+  "anchors": [
+    {
+      "name": "health-anchor",
+      "blender": [
+        0.0,
+        -0.352554,
+        1.418072
+      ],
+      "three": [
+        0.0,
+        1.418072,
+        0.352554
+      ]
+    },
+    {
+      "name": "muzzle-anchor",
+      "blender": [
+        0.0,
+        -3.044768,
+        0.047369
+      ],
+      "three": [
+        0.0,
+        0.047369,
+        3.044768
+      ]
+    },
+    {
+      "name": "impact-anchor",
+      "blender": [
+        0.0,
+        -0.878547,
+        0.244376
+      ],
+      "three": [
+        0.0,
+        0.244376,
+        0.878547
+      ]
+    },
+    {
+      "name": "waterline-anchor",
+      "blender": [
+        0.0,
+        0.050001,
+        -0.001206
+      ],
+      "three": [
+        0.0,
+        -0.001206,
+        -0.050001
+      ]
+    },
+    {
+      "name": "wingtip-left",
+      "blender": [
+        3.982613,
+        -0.174318,
+        0.435304
+      ],
+      "three": [
+        3.982613,
+        0.435304,
+        0.174318
+      ]
+    },
+    {
+      "name": "wingtip-right",
+      "blender": [
+        -3.983179,
+        -0.183851,
+        0.434136
+      ],
+      "three": [
+        -3.983179,
+        0.434136,
+        0.183851
+      ]
+    },
+    {
+      "name": "tailtip-anchor",
+      "blender": [
+        0.03409,
+        4.169715,
+        -0.012335
+      ],
+      "three": [
+        0.03409,
+        -0.012335,
+        -4.169715
+      ]
+    }
+  ],
+  "auxiliaryMeshes": [
+    "EmergencePoolIrregular",
+    "EmergeDroplet_01",
+    "EmergeDroplet_02",
+    "EmergeDroplet_03",
+    "EmergeDroplet_04",
+    "EmergeDroplet_05",
+    "EmergeDroplet_06",
+    "EmergeDroplet_07",
+    "EmergeDroplet_08",
+    "EmergeDroplet_09"
+  ],
+  "review": {
+    "frames": [
+      1,
+      40,
+      82,
+      113,
+      151
+    ],
+    "views": [
+      "axial-front",
+      "left-three-quarter",
+      "left-side"
+    ]
+  },
+  "sha256": "a5058148e7115a467b2643a34e4e677bdf834ff98eefde1f1aa72c7bc9c34f9a"
+}

@@ -1,0 +1,262 @@
+{
+  "assetVersion": "waterwing-dodge-v2",
+  "action": "lateral-dodge",
+  "clip": "WW_dodge_v2",
+  "fps": 30,
+  "frameRange": [
+    1,
+    91
+  ],
+  "durationSeconds": 3.0,
+  "loop": false,
+  "rootMotion": false,
+  "gameTranslationAxis": "+X",
+  "gameplayDisplacement": {
+    "source": "game-layer",
+    "axis": "+X",
+    "rootStatic": true
+  },
+  "motionPolicy": {
+    "root": "static",
+    "worldTranslation": "game-layer",
+    "primaryDeformation": "shape-keys",
+    "boneAssist": "minimal",
+    "inertia": "liquid-delayed-follow-through",
+    "path": "preload-side-forward-arc-brake-settle"
+  },
+  "qualityTargets": {
+    "preserveEllipticalChest": true,
+    "twoStageUnfold": true,
+    "roundedCohesiveNose": true,
+    "frontDeformationFadeMeters": 0.56,
+    "minimumChestThicknessRatio": 0.84,
+    "maximumBoneAssistRadians": 0.02
+  },
+  "coordinateConvention": {
+    "blender": "right-handed Z-up, creature forward -Y",
+    "three": "right-handed Y-up, creature forward +Z",
+    "mapping": "(x, y, z) -> (x, z, -y)"
+  },
+  "bounds": {
+    "blender": {
+      "min": [
+        -4.131669998168945,
+        -3.015000104904175,
+        -0.8084436655044556
+      ],
+      "max": [
+        4.131669998168945,
+        4.2270002365112305,
+        0.9553989768028259
+      ]
+    },
+    "three": {
+      "min": [
+        -4.13167,
+        -0.808444,
+        3.015
+      ],
+      "max": [
+        4.13167,
+        0.955399,
+        -4.227
+      ]
+    }
+  },
+  "mesh": {
+    "vertices": 13458,
+    "polygons": 13824,
+    "topology": "closed-rounded-multi-ring-manta-loft-v2",
+    "frontPoleValence": 16,
+    "noseRingSegments": [
+      16,
+      32,
+      64,
+      128,
+      128,
+      128
+    ]
+  },
+  "bones": [
+    "root",
+    "body_front",
+    "body_mid",
+    "wing_L_root",
+    "wing_L_mid",
+    "wing_L_tip",
+    "wing_L_web",
+    "wing_R_root",
+    "wing_R_mid",
+    "wing_R_tip",
+    "wing_R_web",
+    "body_rear",
+    "tail_01",
+    "tail_02",
+    "tail_03"
+  ],
+  "morphs": [
+    "Dodge_Anticipate",
+    "Dodge_Bank",
+    "Dodge_Streamline",
+    "Dodge_Burst_Corrective",
+    "Dodge_Burst_Buffer",
+    "Dodge_Brake",
+    "Dodge_Recovery",
+    "Wing_Sweep_L",
+    "Wing_Sweep_R",
+    "Tail_CounterSweep"
+  ],
+  "animations": [
+    "WW_dodge_v2"
+  ],
+  "anchors": [
+    {
+      "name": "health-anchor",
+      "blender": [
+        0.0,
+        -0.35,
+        1.42
+      ],
+      "three": [
+        0.0,
+        1.42,
+        0.35
+      ]
+    },
+    {
+      "name": "muzzle-anchor",
+      "blender": [
+        0.0,
+        -3.045,
+        0.03
+      ],
+      "three": [
+        0.0,
+        0.03,
+        3.045
+      ]
+    },
+    {
+      "name": "impact-anchor",
+      "blender": [
+        0.0,
+        -0.88,
+        0.24
+      ],
+      "three": [
+        0.0,
+        0.24,
+        0.88
+      ]
+    },
+    {
+      "name": "waterline-anchor",
+      "blender": [
+        0.0,
+        0.05,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        -0.05
+      ]
+    },
+    {
+      "name": "wingtip-left",
+      "blender": [
+        3.98,
+        -0.28,
+        0.5
+      ],
+      "three": [
+        3.98,
+        0.5,
+        0.28
+      ]
+    },
+    {
+      "name": "wingtip-right",
+      "blender": [
+        -3.98,
+        -0.28,
+        0.5
+      ],
+      "three": [
+        -3.98,
+        0.5,
+        0.28
+      ]
+    },
+    {
+      "name": "tailtip-anchor",
+      "blender": [
+        0.0,
+        4.17,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        -4.17
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "name": "hover",
+      "frame": 1,
+      "timeSeconds": 0.0
+    },
+    {
+      "name": "anticipate",
+      "frame": 13,
+      "timeSeconds": 0.4
+    },
+    {
+      "name": "burst",
+      "frame": 31,
+      "timeSeconds": 1.0
+    },
+    {
+      "name": "burst-buffer",
+      "frame": 43,
+      "timeSeconds": 1.4
+    },
+    {
+      "name": "brake",
+      "frame": 55,
+      "timeSeconds": 1.8
+    },
+    {
+      "name": "counter-sweep",
+      "frame": 67,
+      "timeSeconds": 2.2
+    },
+    {
+      "name": "recover",
+      "frame": 91,
+      "timeSeconds": 3.0
+    }
+  ],
+  "review": {
+    "frames": [
+      1,
+      13,
+      31,
+      43,
+      55,
+      67,
+      91
+    ],
+    "views": [
+      "axial-front",
+      "left-three-quarter",
+      "right-side",
+      "top"
+    ],
+    "mode": "clay",
+    "expectedClayRenders": 28
+  },
+  "sha256": "41969e8d49f520d25eeb39c0879a1ba1c362e151473f636dafec2cc94c7b2b84"
+}

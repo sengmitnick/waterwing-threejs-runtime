@@ -1,0 +1,81 @@
+{
+  "assetVersion": "enemy-direct-waterball-v2",
+  "kind": "enemy-projectile",
+  "motionProfile": "direct-rounded-bulb-with-short-fluid-wake",
+  "geometry": "rounded-teardrop-water-cluster",
+  "surfaceContinuity": "smooth-primary-profile",
+  "coordinateConvention": {
+    "blender": "right-handed Z-up, projectile travel -Y",
+    "three": "right-handed Y-up, projectile travel +Z"
+  },
+  "bounds": {
+    "blender": {
+      "min": [
+        -0.533603,
+        -0.764467,
+        -0.5125
+      ],
+      "max": [
+        0.533836,
+        1.0016,
+        0.5125
+      ],
+      "size": [
+        1.067439,
+        1.766067,
+        1.025
+      ]
+    },
+    "three": {
+      "min": [
+        -0.533603,
+        -0.5125,
+        -1.0016
+      ],
+      "max": [
+        0.533836,
+        0.5125,
+        0.764467
+      ],
+      "size": [
+        1.067439,
+        1.025,
+        1.766067
+      ]
+    }
+  },
+  "meshes": [
+    "WaterBulb",
+    "ShortFluidTail",
+    "WakeDroplet"
+  ],
+  "anchors": [
+    {
+      "name": "center-anchor",
+      "blender": [
+        0.0,
+        -0.05,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        0.05
+      ]
+    },
+    {
+      "name": "impact-anchor",
+      "blender": [
+        0.0,
+        -0.77,
+        0.0
+      ],
+      "three": [
+        0.0,
+        0.0,
+        0.77
+      ]
+    }
+  ],
+  "sha256": "c15189375d4d3f7abfa88246047f5d18ee054750c45ae2d1d822537bd65e1d22"
+}
