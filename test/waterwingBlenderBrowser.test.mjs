@@ -45,7 +45,14 @@ test.before(async () => {
     headless: true,
     args: process.platform === 'darwin'
       ? ['--no-sandbox', '--enable-webgl', '--ignore-gpu-blocklist', '--use-angle=metal']
-      : ['--no-sandbox', '--enable-webgl', '--ignore-gpu-blocklist', '--use-gl=swiftshader'],
+      : [
+          '--no-sandbox',
+          '--enable-webgl',
+          '--ignore-gpu-blocklist',
+          '--use-gl=angle',
+          '--use-angle=swiftshader',
+          '--enable-unsafe-swiftshader',
+        ],
   });
   page = await browser.newPage();
   page.on('pageerror', error => errors.push(error.message));
